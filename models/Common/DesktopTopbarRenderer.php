@@ -88,36 +88,5 @@ class DesktopTopbarRenderer
                 }
             }
         }
-
-        // array_splice($topbar->topbarButtons, 0, 0, [(object)[
-        //     "errorsButtonRenderer" => (object)[
-        //         "icon" => (object)[
-        //             "iconType" => "ERROR"
-        //         ],
-        //         "tooltip" => "Errors",
-        //         "menuRenderer" => (object)[
-        //             "multiPageMenuRenderer" => (object)[
-        //                 "sections" => [
-        //                     (object)[
-        //                         "multiPageMenuSectionRenderer" => (object)[
-        //                             "items" => [
-        //                                 (object)[
-        //                                     "compactLinkRenderer" => (object)[
-        //                                         "icon" => (object)[
-        //                                             "iconType" => "ERROR"
-        //                                         ],
-        //                                         "title" => (object)[
-        //                                             "simpleText" => "Test"
-        //                                         ]
-        //                                     ]
-        //                                 ]
-        //                             ]
-        //                         ]
-        //                     ]
-        //                 ]
-        //             ]
-        //         ]
-        //     ]
-        // ]]);
     }
 }
