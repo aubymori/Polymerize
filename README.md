@@ -9,7 +9,7 @@ problem, you should know:
 - How to troubleshoot it and how to determine if it is an issue on your side
 - How to report it properly, if you cannot fix it
 
-Support will not be provided to users who think for themselves.
+Support will not be provided to users who cannot think for themselves.
 <!-- ^ tfw r/oldyoutubelayout -->
 
 ## Installation
