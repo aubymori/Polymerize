@@ -1,0 +1,16 @@
+# This file contains regular expressions for general use.
+
+# Used to isolate the subscriber count. Note that since subscriber counts are
+# abbreviated by YouTube, you can't just replace all numerical data, or you
+# would display wrong counts. Instead, you must replace all text that can occur
+# in the string except for the units.
+subscriberCountIsolator: "/( subscribers)|( subscriber)/"
+
+# Used to isolate the video count from playlist renderers.
+videoCountIsolator: "/( videos)|( video)/"
+
+# Used to determine if a playlist is a mix
+mixMatch: "Mix"
+
+# Used to determine if a playlist metadata row is the updated time text
+playlistUpdatedMatch: "/Updated/"

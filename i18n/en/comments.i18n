@@ -1,0 +1,14 @@
+
+
+viewRepliesSingular: "View reply"
+viewRepliesPlural: "View %s replies"
+viewRepliesCreatorSingular: "View reply from %s"
+viewRepliesCreatorPlural: "View %s replies from %s and others"
+hideRepliesSingular: "Hide reply"
+hideRepliesPlural: "Hide %s replies"
+reply: "Reply"
+
+heart: "Heart"
+
+readMore: "Read more"
+showLess: "Show less"

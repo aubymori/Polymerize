@@ -1,0 +1,21 @@
+# Replacement for the modern "...more" string
+showMore: "Show more"
+
+autoplayTitle: "Up next"
+autoplayToggleDescription: "Autoplay"
+autoplayInfoText: >
+  When autoplay is enabled, a suggested video will automatically play next.
+
+dislikeA11yLabel: dislike this video along with %s other people
+
+# Used for detecting if the date string in watch descriptions should be
+# modified. If none of these words are found in the string, then it is assumed
+# that the string should be modified.
+nonPublishCheck: "/(Premier)|(Started)|(Streamed)|(Scheduled)|(Live stream)|(Last streamed)/"
+
+publishedOn: "Published on %s"
+uploadedOn: "Uploaded on %s"
+
+# Toast messages for playlist loop button
+loopOn: "Loop is on"
+loopOff: "Loop is off"

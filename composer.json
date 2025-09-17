@@ -1,0 +1,6 @@
+{
+    "require": {
+        "twig/twig": "^3.21",
+        "google/protobuf": "^4.31"
+    }
+}

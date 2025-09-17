@@ -1,0 +1,16 @@
+trending: "Trending"
+explore: "Explore"
+myChannel: "My channel"
+library: "Library"
+
+bestOfYouTube:
+  title: "Best of YouTube"
+  popularOnYouTube: "Popular on YouTube"
+  music: "Music"
+  sports: "Sports"
+  gaming: "Gaming"
+  moviesTv: "Movies & Shows"
+  news: "News"
+  live: "Live"
+  spotlight: "Spotlight"
+  threeSixty: "360° Video"

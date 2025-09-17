@@ -1,0 +1,19 @@
+syntax = "proto3";
+
+package com.youtube.innertube.request;
+
+message BrowseParams {
+    message BrowseParamsInner {
+        message BrowseContinuationParams {
+            message TargetId {
+                string target_id = 1;
+            }
+
+            optional TargetId target_id = 19;
+        }
+
+        optional BrowseContinuationParams continuation = 3;
+    }
+
+    BrowseParamsInner inner = 110;
+}

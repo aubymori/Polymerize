@@ -1,0 +1,14 @@
+syntax = "proto3";
+
+package com.youtube.innertube.request;
+
+message ChannelContinuation {
+    message ChannelContinuationInner {
+        string ucid = 2;
+
+        // Encoded BrowseParams message
+        string continuation = 3;
+    }
+
+    ChannelContinuationInner inner = 80226972;
+}

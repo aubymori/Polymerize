@@ -1,0 +1,8 @@
+# "Subscribed" text for subscribe button.
+subscribedButtonText: "Subscribed"
+
+# Current Live badge label to match, since I am unsure if premieres use the same
+# style and can't really test
+liveBadgeTextMatch: "LIVE"
+# Live badge text for videos, since it was changed
+liveBadgeText: "LIVE NOW"
