@@ -25,6 +25,9 @@ class RichGridRenderer
                 break;
             }
 
+            if ($itemName == "feedNudgeRenderer")
+                continue;
+
             $itemName = match ($itemName)
             {
                 "videoRenderer"    => "gridVideoRenderer",
