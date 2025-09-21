@@ -904,5 +904,6 @@
     "LINK_OIS_DOMAIN": "oauthintegrations-clients6.youtube.com",
     "IS_TABLET": false,
     "LINK_API_KEY": "AIzaSyDophAQuyyiBr8h0nypEwXUKozH-BEswD0",
-    "DISABLE_WARM_LOADS": false
+    "DISABLE_WARM_LOADS": false,
+    "IS_SHELL_LOAD": true
 }
