@@ -15,8 +15,9 @@ class LockupViewModel
         $propName = match($viewModelInner->contentType)
         {
             "LOCKUP_CONTENT_TYPE_PLAYLIST" => "playlistRenderer",
+            "LOCKUP_CONTENT_TYPE_ALBUM" => "playlistRenderer",
             "LOCKUP_CONTENT_TYPE_VIDEO" => "videoRenderer",
-            default => "FIXME"
+            default => "FIXME_" . $viewModelInner->contentType
         };
         if ($type != "")
             $propName = $type . ucfirst($propName);
@@ -29,6 +30,7 @@ class LockupViewModel
                 self::convertVideo($viewModelInner, $result);
                 break;
             case "LOCKUP_CONTENT_TYPE_PLAYLIST":
+            case "LOCKUP_CONTENT_TYPE_ALBUM":
                 self::convertPlaylist($viewModelInner, $result, $propName);
                 break;
         }

@@ -7,7 +7,8 @@
 subscriberCountIsolator: "/( subscribers)|( subscriber)/"
 
 # Used to isolate the video count from playlist renderers.
-videoCountIsolator: "/( videos)|( video)/"
+# Also contains "songs" for album renderers.
+videoCountIsolator: "/( videos)|( video)|( songs)|( song)/"
 
 # Used to determine if a playlist is a mix
 mixMatch: "Mix"
