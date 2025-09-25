@@ -31,6 +31,7 @@ class BrowseController extends PolymerController
             {
                 $contentInner =
                     @$tab->tabRenderer->content
+                    ?? @$tab->expandableTabRenderer->content
                     ?? null;
 
                 if (!is_null($contentInner))
