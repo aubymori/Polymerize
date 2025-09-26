@@ -1,4 +1,4 @@
-cache/
+/cache/
 config.json
 expflags_overrides.json
 player_flags_overrides.txt
