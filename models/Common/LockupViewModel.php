@@ -55,12 +55,20 @@ class LockupViewModel
 
         if (isset($metadata->image))
         {
-            $image = $metadata->image->decoratedAvatarViewModel;
-            $avatar = $image->avatar->avatarViewModel;
+            if ($image = @$metadata->image->decoratedAvatarViewModel)
+            {
+                $avatar = $image->avatar->avatarViewModel;
+            }
+            // Handle the multiple authors bullshit by just grabbing the first one.
+            else if ($image = @$metadata->image->avatarStackViewModel)
+            {
+                $avatar = $image->avatars[0]->avatarViewModel;
+            }
+            
             $out->owner = (object)[
                 "acccessibility" => (object)[
                     "accessibilityData" => (object)[
-                        "label" => $image->a11yLabel
+                        "label" => @$image->a11yLabel ?? ""
                     ]
                 ],
                 "thumbnail" => (object)[
@@ -227,11 +235,25 @@ class LockupViewModel
                 ((!$hasBadges && $rowCount == 2) || ($hasBadges && $rowCount == 3)))
                 {
                     $bylineText = ParsingUtils::attributedStringToFormattedString($part->text);
+
+                    // Handle the multiple authors bullshit by just grabbing the first one.
+                    $run = &$bylineText->runs[0];
+                    if (isset($run->navigationEndpoint->showDialogCommand))
+                    {
+                        $channel = $run->navigationEndpoint->showDialogCommand->panelLoadingStrategy->inlineContent->dialogViewModel->customContent
+                            ->listViewModel->listItems[0]->listItemViewModel;
+
+                        $run->text = $channel->title->content;
+                        $run->navigationEndpoint = $channel->rendererContext->commandContext->onTap->innertubeCommand;
+                        $badgeIcon = @$channel->title->attachmentRuns[0]->element->type->imageType->image->sources[0]->clientResource->imageName ?? null;
+                    }
+
                     $out->shortBylineText = $bylineText;
                     $out->longBylineText = $bylineText;
 
                     // Just fucking kill me now.
-                    $badgeIcon = @$part->text->attachmentRuns[0]->element->type->imageType->image->sources[0]->clientResource->imageName ?? null;
+                    if (!isset($badgeIcon))
+                        $badgeIcon = @$part->text->attachmentRuns[0]->element->type->imageType->image->sources[0]->clientResource->imageName ?? null;
                     $badgeIcon = match ($badgeIcon)
                     {
                         "CHECK_CIRCLE_FILLED" => "CHECK_CIRCLE_THICK",

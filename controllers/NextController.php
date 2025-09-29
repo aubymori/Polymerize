@@ -33,14 +33,14 @@ class NextController extends PolymerController
             {
                 $rydPromise = new Promise(fn($r) => $r(null));
             }
-            $rydPromise->then(function ($rydResponse) use ($dataInner)
+            $rydPromise->then(function ($rydResponse) use ($data, $dataInner)
             {
                 $rydData = (object)[];
                 try
                 {
                     $rydData = $rydResponse?->getJson() ?? (object)[];
                 } catch (\Throwable $e) {}
-                TwoColumnWatchNextResults::mutate($dataInner, $rydData, $this->isLoggedIn());
+                TwoColumnWatchNextResults::mutate($dataInner, $rydData, $data->frameworkUpdates, $this->isLoggedIn());
             });
         }
         else if ($dataInner = @$data->onResponseReceivedEndpoints)

@@ -33,7 +33,7 @@ class TwoColumnWatchNextResults
     private static ?object $secondaryInfo = null;
     private static bool $signedIn = false;
 
-    public static function mutate(object &$data, object $rydData, bool $signedIn): void
+    public static function mutate(object &$data, object $rydData, object $frameworkUpdates, bool $signedIn): void
     {
         self::$strings = i18n::getNamespace("next");
         self::$rydData = $rydData;
@@ -59,7 +59,7 @@ class TwoColumnWatchNextResults
 
         if (!is_null(self::$secondaryInfo))
         {
-            self::mutateSecondaryInfo(self::$secondaryInfo);
+            self::mutateSecondaryInfo(self::$secondaryInfo, $frameworkUpdates);
         }
 
         $secondaryResults = @$data->secondaryResults->secondaryResults->results ?? null;
@@ -405,7 +405,7 @@ class TwoColumnWatchNextResults
         array_splice($topLevelButtons, 0, 0, [ $likeButton, $dislikeButton ]);
     }
 
-    private static function mutateSecondaryInfo(object &$data): void
+    private static function mutateSecondaryInfo(object &$data, object $frameworkUpdates): void
     {
         if (isset($data->attributedDescription))
         {
@@ -425,12 +425,6 @@ class TwoColumnWatchNextResults
             "simpleText" => self::$strings->get("showMore")
         ];
 
-        $subscribeButton = null;
-        if ($subscribeButton = @$data->subscribeButton->subscribeButtonRenderer)
-        {
-            SubscribeButtonRenderer::mutate($subscribeButton);
-        }
-
         $owner = null;
         if ($owner = @$data->owner->videoOwnerRenderer)
         {
@@ -439,6 +433,60 @@ class TwoColumnWatchNextResults
             {
                 MetadataBadgeRenderer::fixIcons($owner->badges);
             }
+
+            // Handle multiple owners by showing just the first.
+            if (isset($owner->navigationEndpoint->showDialogCommand))
+            {
+                $channel = $owner->navigationEndpoint->showDialogCommand->panelLoadingStrategy->inlineContent->dialogViewModel->customContent
+                    ->listViewModel->listItems[0]->listItemViewModel;
+
+                $owner->title = (object)[ "runs" => [ (object)[ "text" => $channel->title->content ] ] ];
+                $owner->thumbnail = (object)[ "thumbnails" => $channel->leadingAccessory->avatarViewModel->image->sources ];
+                $owner->navigationEndpoint = $channel->leadingAccessory->avatarViewModel->endpoint->innertubeCommand;
+
+                if (($subButton = @$channel->trailingButtons->buttons[0])
+                && isset($subButton->subscribeButtonViewModel))
+                {
+                    $data->subscribeButton = SubscribeButtonRenderer::fromViewModel($subButton, $frameworkUpdates);
+                }
+
+                // Extract sub count
+                $subtitle = $channel->subtitle->content;
+                $sepPos = mb_strpos($subtitle, "\u{2069} • \u{2068}");
+                if ($sepPos !== false)
+                {
+                    $subCount = mb_substr($subtitle, $sepPos + mb_strlen("\u{2069} • \u{2068}"));
+                    $subCount = mb_substr($subCount, 0, mb_strlen($subCount) - 1);
+                    $owner->subscriberCountText = (object)[ "simpleText" => $subCount ];
+                }
+
+                $badgeIcon = @$channel->title->attachmentRuns[0]->element->type->imageType->image->sources[0]->clientResource->imageName ?? null;
+                $badgeIcon = match ($badgeIcon)
+                {
+                    "CHECK_CIRCLE_FILLED" => "CHECK_CIRCLE_THICK",
+                    "AUDIO_BADGE" => "MUSIC_NOTE",
+                    default => null
+                };
+                if (!is_null($badgeIcon))
+                {
+                    $owner->badges = [
+                        (object)[
+                            "metadataBadgeRenderer" => (object)[
+                                "icon" => (object)[
+                                    "iconType" => $badgeIcon
+                                ],
+                                "style" => "BADGE_STYLE_TYPE_VERIFIED"
+                            ]
+                        ]
+                    ];
+                }
+            }
+        }
+
+        $subscribeButton = null;
+        if ($subscribeButton = @$data->subscribeButton->subscribeButtonRenderer)
+        {
+            SubscribeButtonRenderer::mutate($subscribeButton);
         }
     }
 
