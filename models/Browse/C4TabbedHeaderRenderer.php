@@ -10,7 +10,7 @@ class C4TabbedHeaderRenderer
 {
     private static array $badgeIconMap = [
         "CHECK_CIRCLE_FILLED" => "CHECK_CIRCLE_THICK",
-        "AUDIO_BADGE" => "MUSIC_NOTE"
+        "AUDIO_BADGE" => "OFFICIAL_ARTIST_BADGE"
     ];
 
     public static function fromViewModel(object &$viewModel, bool $loggedIn, ?object $frameworkUpdates): object

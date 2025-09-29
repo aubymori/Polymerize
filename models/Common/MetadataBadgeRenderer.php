@@ -4,7 +4,7 @@ namespace Polymerize\Model\Common;
 class MetadataBadgeRenderer
 {
     private static array $iconMap = [
-        "AUDIO_BADGE" => "MUSIC_NOTE"
+        "AUDIO_BADGE" => "OFFICIAL_ARTIST_BADGE"
     ];
 
     public static function fixIcons(array &$badges)

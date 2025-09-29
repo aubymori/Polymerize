@@ -164,7 +164,7 @@ class BrowseModel
                 // Fix artist channel badge icon
                 if (@$badgeInner->icon->iconType == "AUDIO_BADGE")
                 {
-                    $badgeInner->icon->iconType = "MUSIC_NOTE";
+                    $badgeInner->icon->iconType = "OFFICIAL_ARTIST_BADGE";
                 }
             }
         }

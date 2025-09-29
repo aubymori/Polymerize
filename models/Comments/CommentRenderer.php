@@ -164,7 +164,7 @@ class CommentRenderer
                 $verifiedIcon = (!$comment->author->isCreator && Config::getConfigProp("comments.fixVerifiedIcon"))
                     ? "CHECK_CIRCLE_THICK" : "CHECK";
                 $authorCommentBadge->icon = (object)[
-                    "iconType" => $comment->author->isArtist ? "MUSIC_NOTE" : $verifiedIcon
+                    "iconType" => $comment->author->isArtist ? "OFFICIAL_ARTIST_BADGE" : $verifiedIcon
                 ];
             }
 

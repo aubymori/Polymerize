@@ -257,7 +257,7 @@ class LockupViewModel
                     $badgeIcon = match ($badgeIcon)
                     {
                         "CHECK_CIRCLE_FILLED" => "CHECK_CIRCLE_THICK",
-                        "AUDIO_BADGE" => "MUSIC_NOTE",
+                        "AUDIO_BADGE" => "OFFICIAL_ARTIST_BADGE",
                         default => null
                     };
                     if (!is_null($badgeIcon))
@@ -415,7 +415,7 @@ class LockupViewModel
                             $badgeIcon = match ($badgeIcon)
                             {
                                 "CHECK_CIRCLE_FILLED" => "CHECK_CIRCLE_THICK",
-                                "AUDIO_BADGE" => "MUSIC_NOTE",
+                                "AUDIO_BADGE" => "OFFICIAL_ARTIST_BADGE",
                                 default => null
                             };
                             if (!is_null($badgeIcon))
